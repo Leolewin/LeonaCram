@@ -1,0 +1,22 @@
+{
+  "name": "leonacram",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leolewin/LeonaCram.git"
+  },
+  "author": "leolewin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Leolewin/LeonaCram/issues"
+  },
+  "homepage": "https://github.com/Leolewin/LeonaCram#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
