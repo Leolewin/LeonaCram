@@ -56,5 +56,10 @@ app.use(function(err, req, res, next) {
   });
 });
 
+var server = app.listen(8081);
+
+var host = server.address().address;
+var port = server.address().port;
+console.log("Server is initing at http://%s:%s", host, port);
 
 module.exports = app;
