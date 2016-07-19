@@ -31,6 +31,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+// app.use(express.static(__dirname + '/public/html_test'));
+app.get('/', function(req, res){
+  res.sendFile('G:/codes/LeonaCram/public/html_test/test.html');
+})
+
+
 // app.get('/', function (req, res) {
 //   res.send('Hello World!');
 // });
