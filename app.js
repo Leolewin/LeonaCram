@@ -15,6 +15,13 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// session support
+app.use(session({
+  resave: false, // don't save session if unmodified
+  saveUninitialized: false, // don't create session until something stored
+  secret: 'some secret here'
+}));
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -23,6 +30,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// app.get('/', function (req, res) {
+//   res.send('Hello World!');
+// });
+
+// app.post('/', function (req, res) {
+//   res.send('Got a POST request');
+// });
+
+// app.delete('/user', function (req, res) {
+//   res.send('Got a DELETE request at /user');
+// });
+
+//from here use routes map!!
 app.use('/', routes);
 app.use('/users', users);
 
@@ -69,19 +90,6 @@ var port = server.address().port;
 console.log("Server is initing at http://%s:%s", host, port);
 
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-
-app.post('/', function (req, res) {
-  res.send('Got a POST request');
-});
-
-app.delete('/user', function (req, res) {
-  res.send('Got a DELETE request at /user');
-});
-
-
 // define a custom res.message() method
 // which stores messages in the session
 app.response.message = function(msg){
@@ -96,18 +104,11 @@ app.response.message = function(msg){
 // log
 if (!module.parent) app.use(logger('dev'));
 
-// session support
-app.use(session({
-  resave: false, // don't save session if unmodified
-  saveUninitialized: false, // don't create session until something stored
-  secret: 'some secret here'
-}));
-
 // parse request bodies (req.body)
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // allow overriding methods in query (?_method=put)
-app.use(methodOverride('_method'));
+// app.use(methodOverride('_method'));
 
 // expose the "messages" local variable when views are rendered
 app.use(function(req, res, next){
