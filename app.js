@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -24,6 +25,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+//set static files path
+app.use(express.static('public'));
+
+//app.use('/static', express.use('public'));  //use '/static' as guazai path
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,8 +68,6 @@ var host = server.address().address;
 var port = server.address().port;
 console.log("Server is initing at http://%s:%s", host, port);
 
-module.exports = app;
-
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
@@ -77,4 +81,6 @@ app.delete('/user', function (req, res) {
   res.send('Got a DELETE request at /user');
 });
 
+
+module.exports = app;
 
